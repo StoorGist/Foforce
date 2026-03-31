@@ -90,16 +90,26 @@ class PromptApp(ctk.CTk):
 
         # Instrucciones para que la mejora sea precisa
         system_instructions = (
-            "Eres un experto en Prompt Engineering. Tu tarea es mejorar el prompt "
-            "del usuario para que sea más claro, tenga contexto y asigne un rol a la IA. "
-            "Responde únicamente con el prompt mejorado."
-        )
+            
+# Versión anterior:            
+#            "Eres un experto en Prompt Engineering. Tu tarea es mejorar el prompt "
+#            "del usuario para que sea más claro, tenga contexto y asigne un rol a la IA. "
+#            "Responde únicamente con el prompt mejorado."
 
+# Nueva versión mejorada (foforce):
+            "Actúa como un Ingeniero de Prompts Senior experto en la optimización de interacciones con modelos de lenguaje (LLM). Tu objetivo es transformar prompts básicos o ambiguos en instrucciones estructuradas, precisas y de alto rendimiento."
+            "Para cada solicitud de optimización:"
+            "1. **Asigna un Rol:** Define una personalidad experta específica para la IA."
+            "2. **Contextualiza:** Explica el propósito de la tarea y el entorno de la solicitud."
+            "3. **Define la Tarea:** Describe con claridad la acción principal y los pasos a seguir."
+            "4. **Establece Restricciones:** Indica formatos de salida, tono, límites de palabras o elementos prohibidos."
+            "5. **Estructura:** Utiliza delimitadores y una jerarquía lógica para facilitar la comprensión del modelo."
+            "Responde exclusivamente con el texto del prompt mejorado, sin incluir introducciones, explicaciones ni comentarios adicionales."
+        )
         try:
-            # USANDO LA SINTAXIS Y MODELO QUE TE FUNCIONÓ
             response = self.client.models.generate_content(
                 model="gemini-3-flash-preview", 
-                contents=f"{system_instructions}\n\nOptimiza este prompt: {user_input}"
+                contents=f"{system_instructions}\n\nOptimiza el siguiente prompt: {user_input}"
             )
             
             self.output_text.delete("1.0", "end")
